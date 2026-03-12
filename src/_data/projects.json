@@ -1,5 +1,10 @@
 [
   {
+    "title": "Shiphaus",
+    "url": "https://shiphaus.org",
+    "description": "AI training, workshops, and workflow automation. Free build days in New York, Chicago, and Malaysia."
+  },
+  {
     "title": "NameStone",
     "url": "https://namestone.com",
     "description": "Issue ENS subdomains through an easy to use REST API."
