@@ -2,28 +2,24 @@
 layout: default
 title: Book Recommendations
 description: Books that have had a significant impact on me.
-image: /img/book.webp
+image: /img/og/books.jpg
 ---
 
 {% include "hero.html", title: "Book Recommendations", band: "/img/band-books.webp" %}
 
-<div class="content-list">
+<ol class="mt-10 pb-4">
   {% for book in books %}
-  <div>
-    <a
-      href="{{ book.url }}"
-      target="_blank"
-      class="content-link"
-    >
-      {{ book.title }}
-    </a>
+  <li class="book-row">
+    <span class="rn">{{ forloop.index | roman }}.</span>
+    <div>
+    <a class="item-title hover:text-accent" href="{{ book.url }}" target="_blank" rel="noopener noreferrer">{{ book.title }}</a>
     {% if book.hasQuote %}
-    <blockquote class="p-4 italic muted quote">
-      <p class="mb-2">"{{ book.quote }}"</p>
-      <cite>— {{ book.quoteAuthor }}</cite>
+    <blockquote class="book-quote">
+      <p>&ldquo;{{ book.quote }}&rdquo;</p>
+      <cite class="label muted not-italic">{{ book.quoteAuthor }}</cite>
     </blockquote>
     {% endif %}
-    <p class="mt-2">
+    <p class="muted">
       {% if book.hasVirtues %}
       {{ book.description }} In short, he made a list of
       <span
@@ -51,6 +47,7 @@ image: /img/book.webp
       {{ book.description | safe }}
       {% endif %}
     </p>
-  </div>
+    </div>
+  </li>
   {% endfor %}
-</div>
+</ol>

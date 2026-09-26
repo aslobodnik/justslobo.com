@@ -11,6 +11,13 @@
   body {
     line-height: 1.75;
   }
+  ::selection {
+    background-color: #CFE0D6;
+  }
+  :focus-visible {
+    outline: 2px solid #1D6B50;
+    outline-offset: 3px;
+  }
   a, button, summary, [class*="hover:"] {
     transition-property: color, background-color, border-color, text-decoration-color, opacity, box-shadow, transform, filter;
     transition-duration: 250ms;
@@ -208,15 +215,35 @@
     @apply font-mono text-sm;
   }
 
-  /* Quotes */
-  .quote-card {
-    @apply py-6 border-l-2 border-accent/40 pl-6 hover:border-accent;
+  /* Quotes: hanging emerald quote mark, dotted rules between */
+  .quote-row {
+    @apply grid py-5 border-b border-dotted;
+    border-color: #C9BFAC;
+    grid-template-columns: 2.25rem 1fr;
   }
-  .quote-text {
-    @apply text-warmgray;
+  .quote-mark {
+    @apply font-serif italic text-accent text-4xl leading-none -mt-1;
   }
-  .quote-author {
-    @apply mt-3 muted;
+  .quote-row cite {
+    @apply block mt-2;
+  }
+
+  /* Books: roman-numeral rows like the homepage lists */
+  .book-row {
+    @apply grid items-baseline gap-x-2 py-4 border-b border-dotted;
+    border-color: #C9BFAC;
+    grid-template-columns: 2.25rem 1fr;
+  }
+  .book-quote {
+    @apply my-2 pl-4 italic muted;
+  }
+  .book-quote cite {
+    @apply block mt-1;
+  }
+
+  /* 404 */
+  .not-found {
+    @apply mt-4 muted;
   }
 
   /* Friedman matrix - hover reveal */

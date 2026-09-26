@@ -7,7 +7,7 @@
   {
     "title": "Ben Franklin's Autobiography",
     "url": "https://gutenberg.org/cache/epub/20203/pg20203-images.html",
-    "description": "The autobiography is written in simple langauge. The book demonstrates Ben's thinking style. The self-improvement plan had the most impact on me.",
+    "description": "The autobiography is written in simple language. The book demonstrates Ben's thinking style. The self-improvement plan had the most impact on me.",
     "hasVirtues": true
   },
   {
@@ -36,6 +36,6 @@
     "description": "History begins once we record it. Everything before that is prehistory. <a target=\"_blank\" class=\"content-link\" href=\"https://en.wikipedia.org/wiki/Will_Durant\">Will Durant</a> traces civilization from ancient Egypt through to the 20th century.",
     "hasQuote": true,
     "quote": "Only a fool would try to compress a hundred centuries into a hundred pages of hazardous conclusions. We proceed.",
-    "quoteAuthor": "Will Durrant"
+    "quoteAuthor": "Will Durant"
   }
 ]
