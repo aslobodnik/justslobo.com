@@ -59,11 +59,17 @@
   }
 
   /* Inline brand icon ahead of a link's text */
-  .icon-link {
-    @apply inline-flex items-baseline gap-1;
-  }
+  /* icon sized to cap height and seated on the text baseline */
   .icon-link svg {
-    @apply w-3.5 h-3.5 fill-current self-center;
+    display: inline-block;
+    width: 0.72em;
+    height: 0.72em;
+    vertical-align: -0.02em;
+    fill: currentColor;
+  }
+  /* gap before a text label; the icon-only X link has none */
+  .icon-link:not([aria-label]) svg {
+    margin-right: 0.28em;
   }
 
   /* Section titles: same role as labels */
