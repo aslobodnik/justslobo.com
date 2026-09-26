@@ -138,10 +138,12 @@
     @apply relative grid items-baseline gap-x-2 py-3.5 border-b border-dotted;
     border-color: #C9BFAC;
     grid-template-columns: 2.25rem 1fr auto;
-    transition: background-color 250ms ease-in-out;
+    transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out;
   }
+  /* tint bleeds 12px past the column so text never sits on its edge */
   .project-row:hover {
     background-color: rgb(29 107 80 / 0.05);
+    box-shadow: -12px 0 0 rgb(29 107 80 / 0.05), 12px 0 0 rgb(29 107 80 / 0.05);
   }
   .project-link {
     @apply item-title;
