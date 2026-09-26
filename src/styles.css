@@ -2,26 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Type scale: serif 24px (titles) and 16px (everything else),
+  mono 12px uppercase for labels and meta. Nothing else.
+  Motion: every hover state eases over 250ms.
+*/
 @layer base {
   body {
     line-height: 1.75;
   }
+  a, button, summary, [class*="hover:"] {
+    transition-property: color, background-color, border-color, text-decoration-color, opacity, box-shadow, transform, filter;
+    transition-duration: 250ms;
+    transition-timing-function: ease-in-out;
+  }
 }
 
 @layer components {
+  /* Type roles */
+  .page-title {
+    @apply text-2xl font-normal leading-snug text-warmgray;
+  }
+  .label {
+    @apply font-mono text-xs font-normal uppercase tracking-widest text-accent;
+  }
+  .item-title {
+    @apply text-base font-semibold text-warmgray;
+  }
+  .muted {
+    @apply text-warmgray/75;
+  }
+
   /* Wordmark */
   .justslobo-wordmark {
     display: block;
     color: #2D2D2D;
-    transition: color 700ms ease-out;
   }
   .justslobo-wordmark:hover {
-    color: #2E7D32;
+    color: #185C43;
   }
 
   /* Navigation */
   .nav-link {
-    @apply text-warmgray/80 transition-colors duration-200 hover:text-accent;
+    @apply text-warmgray/80 hover:text-accent;
   }
   .nav-link-active {
     @apply text-accent;
@@ -29,59 +52,125 @@
 
   /* Content links - subtle underline */
   .content-link {
-    @apply text-accent transition-all duration-200 underline decoration-accent/30 underline-offset-2;
+    @apply text-accent underline decoration-accent/30 underline-offset-2;
   }
   .content-link:hover {
-    @apply decoration-accent/70;
+    @apply decoration-accent;
   }
 
-  /* Section titles */
+  /* Section titles: same role as labels */
   .section-title {
-    @apply text-xl font-semibold mt-8 mb-4 text-warmgray;
+    @apply label mt-10 mb-2;
+  }
+  /* label, a hairline running to the edge, and a diamond or link at the end */
+  .list-label {
+    @apply label flex items-center gap-3 mt-14 mb-1;
+  }
+  .list-label .rule {
+    @apply flex-grow h-px;
+    background-color: #B9CBBF;
+  }
+  .list-label .diamond {
+    @apply w-1.5 h-1.5 bg-accent rotate-45;
+  }
+  .list-label a {
+    @apply hover:text-warmgray;
   }
 
-  /* Content list container */
   .content-list {
     @apply flex flex-col gap-8 pb-10 mt-8;
   }
-
-  /* Prose content - tighter spacing for flowing text */
   .prose-content {
     @apply flex flex-col gap-4 pb-10 mt-8;
   }
 
-  /* Profile image - face-focused crop */
-  .profile-img {
-    @apply w-14 h-14 sm:w-16 sm:h-16 rounded-tl-2xl rounded-br-2xl object-cover;
-    object-position: center 35%;
+  /* Engraved plate: double hairline frame around duotone art */
+  .plate {
+    @apply block border border-accent p-[5px];
+  }
+  .plate img {
+    @apply block w-full;
+    outline: 1px solid #9DB8AA;
+  }
+  .plate-band img {
+    @apply h-[120px] sm:h-[190px] object-cover;
+    object-position: 50% 40%;
+  }
+  .plate-sm {
+    @apply inline-block p-[3px];
+  }
+  .plate-sm img {
+    @apply w-11 h-11 outline-none;
+  }
+  .hatch-rule {
+    @apply h-2 border-y border-accent;
+    background: url("/img/hatch.svg") repeat-x;
   }
 
-  /* Social icon touch target */
-  .social-link {
-    @apply flex items-center justify-center w-10 h-10 -m-2 transition duration-300 hover:opacity-50;
-  }
-  .social-link img {
-    @apply w-4 h-4;
+  /* Roman numerals, italic, in the margin of every list */
+  .rn {
+    @apply italic font-medium text-accent;
   }
 
-  /* Thought cards with lift effect */
-  .thought-card {
-    @apply p-6 rounded-lg border border-warm-border bg-white/50 transition-all duration-300;
+  /* Project lists: the row links to the project; the essay link sits above it */
+  .project-row {
+    @apply relative grid items-baseline gap-x-2 py-3.5 border-b border-dotted;
+    border-color: #C9BFAC;
+    grid-template-columns: 2.25rem 1fr auto;
+    transition: background-color 250ms ease-in-out;
   }
-  .thought-card:hover {
-    @apply border-accent/30 shadow-md -translate-y-0.5;
+  .project-row:hover {
+    background-color: rgb(29 107 80 / 0.05);
+  }
+  .project-link {
+    @apply item-title;
+  }
+  .project-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
+  .project-row:hover .project-link {
+    @apply text-accent;
+  }
+  /* sits above the row's link overlay so it stays selectable */
+  .project-desc {
+    @apply relative z-10 muted col-start-2 col-span-2 cursor-text;
+  }
+  .project-meta {
+    @apply font-mono text-xs text-warmgray/60;
+  }
+  .project-essay {
+    @apply relative z-10 label hover:text-warmgray;
   }
 
-  .thought-link {
-    @apply text-accent font-semibold transition-colors duration-200 hover:text-accent-light;
+  /* Essay list: table of contents with dotted leaders; date drops below on phones */
+  .essay-row {
+    @apply grid items-baseline gap-x-2 py-2.5 border-b border-dotted sm:flex sm:gap-2 sm:border-b-0;
+    border-color: #C9BFAC;
+    grid-template-columns: 2.25rem 1fr;
+  }
+  .essay-row .rn {
+    @apply sm:w-9 sm:shrink-0;
+  }
+  .essay-row a {
+    @apply text-warmgray hover:text-accent;
+  }
+  .essay-row .leader {
+    @apply hidden sm:block flex-grow min-w-6 border-b border-dotted -translate-y-1.5;
+    border-color: #B5AB97;
+  }
+  .essay-row .date {
+    @apply label muted col-start-2 whitespace-nowrap;
   }
 
-  /* Poker styles */
+  /* Poker */
   .poker-card {
-    @apply w-auto h-20 md:h-28 transition-transform duration-200 hover:scale-110;
+    @apply w-auto h-20 md:h-28 hover:scale-110;
   }
   .hand-title {
-    @apply mb-4 text-xl font-semibold text-accent;
+    @apply label mb-4;
   }
   .card-container {
     @apply flex items-center space-x-2 md:space-x-4;
@@ -92,32 +181,28 @@
     @apply flex items-center border border-warm-border border-dotted;
   }
   .table-cell-header {
-    @apply flex justify-center items-center font-semibold border border-warm-border border-dotted;
+    @apply label flex justify-center items-center border border-warm-border border-dotted;
   }
   .table-cell-content {
-    @apply flex justify-start items-center pl-4 h-10 text-sm border border-warm-border border-dotted;
+    @apply flex justify-start items-center pl-4 h-10 border border-warm-border border-dotted;
   }
   .table-cell-price {
     @apply flex justify-center items-center border border-warm-border border-dotted;
   }
 
-  /* Code blocks - monospace */
   code, pre {
     @apply font-mono text-sm;
   }
 
-  /* Quote card - editorial style */
+  /* Quotes */
   .quote-card {
-    @apply py-6 border-l-2 border-accent/40 pl-6;
-  }
-  .quote-card:hover {
-    @apply border-accent;
+    @apply py-6 border-l-2 border-accent/40 pl-6 hover:border-accent;
   }
   .quote-text {
-    @apply text-warmgray text-base sm:text-lg leading-relaxed;
+    @apply text-warmgray;
   }
   .quote-author {
-    @apply mt-3 text-sm text-warmgray/80 tracking-wide;
+    @apply mt-3 muted;
   }
 
   /* Friedman matrix - hover reveal */
@@ -128,12 +213,22 @@
     display: inline-block;
     filter: blur(6px);
     opacity: 0.3;
-    transition: filter 800ms ease-out, opacity 800ms ease-out, transform 800ms ease-out;
-    transform: translateY(2px);
+    transition: filter 300ms ease-in-out, opacity 300ms ease-in-out;
   }
   .friedman-cell:hover span {
     filter: blur(0);
     opacity: 1;
-    transform: translateY(0);
+  }
+
+  /* Footer easter egg */
+  .easter-egg {
+    @apply opacity-0 hover:opacity-100 cursor-default;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  /* Book virtues tooltip */
+  .virtues-tip {
+    @apply invisible opacity-0 absolute -top-6 -left-8 p-4 w-44 bg-cream border border-warm-border group-hover:visible group-hover:opacity-100;
+    transition: opacity 250ms ease-in-out, visibility 250ms ease-in-out;
   }
 }

@@ -5,7 +5,7 @@ description: A collection of links to useful articles on money and investing.
 image: /img/money.webp
 ---
 
-{% include "hero.html", title: "Investing Resources", image: "/img/money.webp" %}
+{% include "hero.html", title: "Investing Resources", band: "/img/band-money.webp" %}
 
 <div class="content-list">
   {% for resource in resources %}
@@ -17,7 +17,7 @@ image: /img/money.webp
     >
       {{ resource.title }}
     </a>
-    <p class="mt-2 text-sm">{{ resource.description }}</p>
+    <p class="mt-2 muted">{{ resource.description }}</p>
   </div>
   {% endfor %}
 </div>

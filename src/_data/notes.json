@@ -1,0 +1,7 @@
+[
+  { "title": "Unsolicited AI Advice", "url": "/what-not-to-do-with-ai", "description": "What not to do with AI. Number one: don't let it pretend to be you." },
+  { "title": "N=1 is Significant", "url": "/n-equals-one", "description": "One data point is all you need. Understanding people through single observations and why anecdotal evidence can be more revealing than broad studies." },
+  { "title": "Reth Archival Node Lighthouse Build Guide", "url": "/reth-archival-node-lighthouse-build-guide", "description": "Technical guide for building and setting up Reth archival nodes with Lighthouse integration." },
+  { "title": "Money and Investing", "url": "/money", "description": "Links to useful articles on money and investing." },
+  { "title": "Poker Hand Rankings", "url": "/poker", "description": "A comprehensive guide to poker hand rankings from Royal Flush to High Card, with interactive card displays." }
+]

@@ -7,11 +7,11 @@ image: /img/reth-beta.png
 
 <div class="flex flex-col items-center space-x-4">
   <div class="mb-8">
-    <h1 class="text-2xl">Reth Node Archival Guide</h1>
-    <div class="text-xs text-center text-green-700">June 2024</div>
+    <h1 class="page-title">Reth Node Archival Guide</h1>
+    <div class="label text-center">June 2024</div>
   </div>
 
-  <img src="/img/reth-beta.png" alt="Reth Beta" class="rounded-lg" />
+  <img src="/img/reth-beta.png" alt="Reth Beta" class="" />
 </div>
 <div class="content-list">
   <h2 class="section-title">Intro</h2>
@@ -56,8 +56,8 @@ image: /img/reth-beta.png
         >
       </div>
       <div class="table-cell-price">$330</div>
-      <div class="table-cell-content font-bold">Total</div>
-      <div class="table-cell-price font-bold">$858</div>
+      <div class="table-cell-content font-semibold">Total</div>
+      <div class="table-cell-price font-semibold">$858</div>
     </div>
     <p class="mt-4">
       You'll need a Philips head screwdriver to open the NUC and a small
@@ -66,14 +66,14 @@ image: /img/reth-beta.png
       <img
         src="/img/nuc-inside.jpeg"
         alt="NUC Inside"
-        class="mx-auto my-4 h-96 rounded-lg"
+        class="mx-auto my-4 h-96"
       />
     </p>
   </div>
 
   <h2 class="section-title">Installation</h2>
 
-  <h3 class="italic text-gray-800 underline underline-offset-4">
+  <h3 class="item-title">
     Create Ubuntu ISO & Install
   </h3>
   <ol class="pl-12 mb-4 list-decimal">
@@ -106,32 +106,32 @@ image: /img/reth-beta.png
     </li>
     <li class="mb-2">Install Ubuntu</li>
   </ol>
-  <h3 class="italic text-gray-800 underline underline-offset-4">
+  <h3 class="item-title">
     Setting Up Ubuntu
   </h3>
 
-  <div class="p-8 bg-gray-900 rounded-lg">
-    <code class="flex flex-col text-sm text-gray-200">
+  <div class="p-8 border border-warm-border bg-white/40">
+    <code class="flex flex-col text-sm text-warmgray">
       <div>
         sudo apt update
-        <span class="text-green-600">// updates package list</span>
+        <span class="text-accent">// updates package list</span>
       </div>
 
       <div>
         sudo apt install curl
-        <span class="text-green-600">// req for homebrew</span>
+        <span class="text-accent">// req for homebrew</span>
       </div>
       <div>
         sudo apt install git-all
-        <span class="text-green-600">// req for homebrew</span>
+        <span class="text-accent">// req for homebrew</span>
       </div>
       <div>
         sudo apt install openssh-server
-        <span class="text-green-600">// req for reth/lighthouse</span>
+        <span class="text-accent">// req for reth/lighthouse</span>
       </div>
     </code>
   </div>
-  <div class="text-sm">
+  <div>
     Install
     <a
       href="https://brew.sh/"
@@ -140,20 +140,20 @@ image: /img/reth-beta.png
       >homebrew</a
     >
   </div>
-  <h3 class="italic text-gray-800 underline underline-offset-4">
+  <h3 class="item-title">
     Installing Reth & Lighthouse
   </h3>
 
-  <div class="overflow-auto p-8 bg-gray-900 rounded-lg">
-    <code class="flex flex-col text-sm text-gray-200">
+  <div class="overflow-auto p-8 border border-warm-border bg-white/40">
+    <code class="flex flex-col text-sm text-warmgray">
       <span>brew install paradigmxyz/brew/reth</span>
       <div>
         brew install lighthouse
-        <span class="text-green-600">// consensus client required</span>
+        <span class="text-accent">// consensus client required</span>
       </div>
     </code>
   </div>
-  <h3 class="italic text-gray-800 underline underline-offset-4">
+  <h3 class="item-title">
     Running Reth First Time (syncing)
   </h3>
   <div>
@@ -165,17 +165,17 @@ image: /img/reth-beta.png
       >here</a
     >.
   </div>
-  <div class="overflow-auto p-8 bg-gray-900 rounded-lg">
-    <code class="flex flex-col text-sm text-gray-200">
+  <div class="overflow-auto p-8 border border-warm-border bg-white/40">
+    <code class="flex flex-col text-sm text-warmgray">
       <span>sudo mkdir -p /secrets </span><br />
       <div>
-        <span class="text-green-600"
+        <span class="text-accent"
           >// secret used in communicating between lighthouse and reth</span
         ><br />
         openssl rand -hex 32 | tr -d "\n" | sudo tee /secrets/jwt.hex
       </div>
       <pre>
-        <span class="text-green-600">
+        <span class="text-accent">
 // Consensus client must run</span
         >
 lighthouse bn \
@@ -185,25 +185,25 @@ lighthouse bn \
 --execution-jwt /secrets/jwt.hex \
       </pre>
       <pre>
-        <span class="text-green-600">
+        <span class="text-accent">
 // Note the auth secret sharing</span>
 reth node \
 --authrpc.jwtsecret /secrets/jwt.hex \
 --authrpc.addr 127.0.0.1 \
 --authrpc.port 8551
       </pre>
-      <span class="text-green-600">// reth Version: 0.2.0-beta.6-dev</span>
+      <span class="text-accent">// reth Version: 0.2.0-beta.6-dev</span>
     </code>
   </div>
   Reth provides console log to let you know the progress of the syncing. There
   are 12 stages, the longest stage is stage 4, it took ~4 days to sync.
-  <h3 class="italic text-gray-800 underline underline-offset-4">
+  <h3 class="item-title">
     Running Reth After Syncing
   </h3>
   <div>To use reth as an RPC endpoint you will need to run the following</div>
 
-  <div class="overflow-auto p-8 bg-gray-900 rounded-lg">
-    <code class="flex flex-col text-sm text-gray-200">
+  <div class="overflow-auto p-8 border border-warm-border bg-white/40">
+    <code class="flex flex-col text-sm text-warmgray">
       <pre>
 
 reth node \
@@ -214,15 +214,15 @@ reth node \
 --http.api all
     </pre
       >
-      <span class="text-green-600">// reth Version: 0.2.0-beta.6-dev</span>
+      <span class="text-accent">// reth Version: 0.2.0-beta.6-dev</span>
     </code>
   </div>
   <h2 class="section-title">Using Reth</h2>
-  <h3 class="italic text-gray-800 underline underline-offset-4">
+  <h3 class="item-title">
     Example #1: Query Reth
   </h3>
-  <div class="overflow-auto p-8 bg-gray-900 rounded-lg">
-    <code class="flex flex-col text-sm text-gray-200">
+  <div class="overflow-auto p-8 border border-warm-border bg-white/40">
+    <code class="flex flex-col text-sm text-warmgray">
       <pre>
 curl -H "Content-Type: application/json" -X POST --data \
 '{
@@ -234,12 +234,12 @@ curl -H "Content-Type: application/json" -X POST --data \
 127.0.0.1:8545
     </pre
       >
-      <span class="text-green-600"
+      <span class="text-accent"
         >// Return: {"jsonrpc":"2.0","result":"0x1317f49","id":67}</span
       >
     </code>
   </div>
-  <h3 class="italic text-gray-800 underline underline-offset-4">
+  <h3 class="item-title">
     Example #2: Use Reth Node as RPC with Metamask
   </h3>
   <div>
@@ -255,8 +255,8 @@ curl -H "Content-Type: application/json" -X POST --data \
         on Nuc & Local Machine
       </li>
       <li class="my-2">2. Set Up SSH Tunel on Local Machine</li>
-      <div class="overflow-auto p-8 bg-gray-900 rounded-lg">
-        <code class="flex flex-col text-sm text-gray-200">
+      <div class="overflow-auto p-8 border border-warm-border bg-white/40">
+        <code class="flex flex-col text-sm text-warmgray">
           ssh -N -v user@xxx.xxx.xxx.xxx -L 8545:localhost:8545
         </code>
       </div>

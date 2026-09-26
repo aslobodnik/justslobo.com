@@ -1,52 +1,8 @@
 [
-  {
-    "title": "Stringscout",
-    "url": "https://stringscout.com",
-    "description": "The public record of self-revealed strings in ICANN's 2026 gTLD round. Every string links to the applicant's own statement or the report it came from."
-  },
-  {
-    "title": "Shiphaus",
-    "url": "https://shiphaus.org",
-    "description": "AI training, workshops, and workflow automation. Free build days in New York, Chicago, and Malaysia."
-  },
-  {
-    "title": "Durin",
-    "url": "https://durin.dev",
-    "description": "Durin is an opinionated approach to issuing ENS subnames on L2. Project docs, contracts, and architecture can be found on <a href=\"https://github.com/resolverworks/durin\">GitHub</a>."
-  },
-  {
-    "title": "ENSPro",
-    "url": "https://enspro.xyz",
-    "description": "A free and easy-to-use no-code portal for managing ENS subdomains."
-  },
-  {
-    "title": "ENS Wallets",
-    "url": "https://enswallets.xyz",
-    "description": "Current Balances of ENS DAO Wallets and their safe signers."
-  },
-  {
-    "title": "SafeNotes",
-    "url": "https://safenotes.xyz/",
-    "description": "Add notes to Safe transactions to clarify purpose, context, and origin—improving transparency and coordination."
-  },
-  {
-    "title": "Voting Power",
-    "url": "https://votingpower.xyz",
-    "description": "Voting Power makes it easy to see who the top delegates are in ENS. It also shows who delegates to them."
-  },
-  {
-    "title": "HashOnChain",
-    "url": "https://hashonchain.com",
-    "description": "Store sha256 hashes onchain, and reveal them to the public later. Useful to prove that you knew something before you mentioned it publicly."
-  },
-  {
-    "title": "Secret Signer",
-    "url": "https://secretsigner.com",
-    "description": "Steganography tool that hides messages in plain text using zero-width characters."
-  },
-  {
-    "title": "stash.md",
-    "url": "https://stash.md",
-    "description": "A curated directory of skills for Claude Code. Every skill includes a live demo so you can try before you install."
-  }
+  { "title": "AskJev", "url": "https://askjev.justslobo.com/", "domain": "askjev.justslobo.com", "description": "Ask Jev a yes or no question and get a probability back. Add one more detail and watch it change its mind.", "essay": "https://aiobservations.substack.com/p/wtf-is-jev" },
+  { "title": "Writing Grader", "url": "https://writing.justslobo.com/", "domain": "writing.justslobo.com", "description": "Paste a draft and get it graded for defensive, wordy, and jargon-heavy writing. Uses Jev by TypeSafe to assess.", "essay": "https://aiobservations.substack.com/p/wtf-is-jev" },
+  { "title": "Three Speeds", "url": "https://speed.justslobo.com/", "domain": "speed.justslobo.com", "description": "How long does it take AI to write the U.S. Constitution? Watch it happen at speeds from 10 to 17,000 tokens per second.", "essay": "https://aiobservations.substack.com/p/the-three-speeds-of-ai" },
+  { "title": "Private.", "url": "https://redacted.justslobo.com/", "domain": "redacted.justslobo.com", "description": "Finds and redacts personal info with a small model running locally. 14x faster than the fastest hosted OpenAI model I tested.", "essay": "https://aiobservations.substack.com/p/a-little-intelligence-is-all-you" },
+  { "title": "Slobo Score", "url": "https://score.justslobo.com/", "domain": "score.justslobo.com", "description": "Scores your writing by how surprising each word is to a language model. Built to catch AI slop, it ended up rewarding short, direct writing.", "essay": "https://aiobservations.substack.com/p/the-slop-score-surprise" },
+  { "title": "A Page for You", "url": "https://hyper.justslobo.com/", "domain": "hyper.justslobo.com", "description": "A website that makes itself up for whoever is visiting. No two visitors get the same page." }
 ]

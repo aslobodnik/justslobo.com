@@ -20,15 +20,15 @@
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="0ui1HqtBuviWSt3DzPaHWg" async></script>
   </head>
   <body
-    class="flex flex-col min-h-screen font-serif bg-cream text-warmgray antialiased"
+    class="relative isolate flex flex-col min-h-screen font-serif bg-cream text-warmgray antialiased overflow-x-hidden"
   >
     <div class="container flex-grow px-4 sm:px-6 mx-auto max-w-2xl">
       <header>
         <nav
-          class="flex justify-between items-center pt-4 pb-1 border-b border-warm-border"
+          class="flex justify-between items-center pt-4 pb-2"
         >
           <a href="/" class="justslobo-wordmark" aria-label="justslobo - home">
-            <svg viewBox="0 0 900 220" class="h-10 sm:h-12">
+            <svg viewBox="0 0 900 220" class="h-9 sm:h-12">
               <defs>
                 <filter id="ink" x="-10%" y="-10%" width="120%" height="120%">
                   <feTurbulence
@@ -69,14 +69,7 @@
               </text>
             </svg>
           </a>
-          <ul class="flex gap-4 sm:gap-6 text-sm sm:text-base">
-            <li>
-              <a
-                href="/"
-                class="nav-link {% if page.url == '/' %}nav-link-active{% endif %}"
-                >Home</a
-              >
-            </li>
+          <ul class="flex gap-4 sm:gap-6">
             <li>
               <a
                 href="/books"
@@ -100,17 +93,16 @@
             </li>
           </ul>
         </nav>
+        <div class="hatch-rule" aria-hidden="true"></div>
       </header>
-      <main class="mt-8 animate-fade-in">{{ content }}</main>
+      <main class="mt-8">{{ content }}</main>
     </div>
 
-    <footer class="py-6 mt-auto">
-      <div class="container mx-auto max-w-2xl text-center">
-        <div
-          class="text-sm text-accent opacity-0 transition-opacity hover:cursor-pointer duration-3000 hover:opacity-100"
-        >
-          hi :-)
-        </div>
+    <footer class="container mx-auto max-w-2xl px-4 sm:px-6 mt-auto pt-16">
+      <div class="hatch-rule" aria-hidden="true"></div>
+      <div class="flex flex-col items-center gap-2 py-7">
+        <span class="plate plate-sm"><img src="/img/vignette-city.webp" width="44" height="44" alt="" /></span>
+        <div class="label easter-egg">pay no attention to the man behind the curtain</div>
       </div>
     </footer>
   </body>

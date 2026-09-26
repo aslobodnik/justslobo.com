@@ -3,11 +3,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cream: "#FDFBF7",
-        warmgray: "#2D2D2D",
-        accent: "#2E7D32",
-        "accent-light": "#4CAF50",
-        "warm-border": "#E8E4DF",
+        cream: "#F6F2E9",
+        warmgray: "#262320",
+        accent: "#1D6B50",
+        "accent-light": "#2F8563",
+        "warm-border": "#E3DCCD",
       },
       fontFamily: {
         serif: ['"Source Serif 4"', "Georgia", "serif"],

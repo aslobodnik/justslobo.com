@@ -5,7 +5,7 @@ description: Useful products and brands I respect.
 image: /img/backpack.webp
 ---
 
-{% include "hero.html", title: "Product Recommendations", image: "/img/backpack.webp" %}
+{% include "hero.html", title: "Product Recommendations", band: "/img/band-products.webp" %}
 
 <div class="content-list">
   {% for product in products %}
@@ -17,7 +17,7 @@ image: /img/backpack.webp
     >
       {{ product.title }}
     </a>
-    <p class="mt-2 text-sm">{{ product.description }}</p>
+    <p class="mt-2 muted">{{ product.description }}</p>
   </div>
   {% endfor %}
 </div>

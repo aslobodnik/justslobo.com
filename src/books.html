@@ -5,7 +5,7 @@ description: Books that have had a significant impact on me.
 image: /img/book.webp
 ---
 
-{% include "hero.html", title: "Book Recommendations", image: "/img/book.webp" %}
+{% include "hero.html", title: "Book Recommendations", band: "/img/band-books.webp" %}
 
 <div class="content-list">
   {% for book in books %}
@@ -18,18 +18,18 @@ image: /img/book.webp
       {{ book.title }}
     </a>
     {% if book.hasQuote %}
-    <blockquote class="p-4 italic text-warmgray/70 quote">
-      <p class="mb-2 text-sm">"{{ book.quote }}"</p>
-      <cite class="text-sm">— {{ book.quoteAuthor }}</cite>
+    <blockquote class="p-4 italic muted quote">
+      <p class="mb-2">"{{ book.quote }}"</p>
+      <cite>— {{ book.quoteAuthor }}</cite>
     </blockquote>
     {% endif %}
-    <p class="mt-2 text-sm">
+    <p class="mt-2">
       {% if book.hasVirtues %}
       {{ book.description }} In short, he made a list of
       <span
         class="relative cursor-pointer group decoration-dotted sm:underline underline-offset-2"
         >13 virtues<span
-          class="hidden absolute -top-6 -left-8 p-4 w-44 no-underline bg-white rounded-xl border-2 border-dashed group-hover:block"
+          class="virtues-tip"
         >
           1.&nbsp; Temperance<br />
           2.&nbsp; Silence<br />

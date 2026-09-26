@@ -5,63 +5,28 @@ description: All my writing and thoughts
 image: /img/book.webp
 ---
 
-{% include "hero.html", title: "Stuff I Write", image: "/img/book.webp" %}
+{% include "hero.html", title: "Stuff I Write", band: "/img/band-thoughts.webp" %}
 
-<div class="content-list">
-  <div class="space-y-6">
-    <div class="thought-card">
-      <h2 class="mb-2 text-lg font-semibold">
-        <a href="/what-not-to-do-with-ai" class="thought-link">
-          Unsolicited AI Advice
-        </a>
-      </h2>
-      <p class="text-sm text-warmgray/70">
-        What not to do with AI. Number one: don't let it pretend to be you.
-      </p>
-    </div>
-    <div class="thought-card">
-      <h2 class="mb-2 text-lg font-semibold">
-        <a href="/n-equals-one" class="thought-link">
-          N=1 is Significant
-        </a>
-      </h2>
-      <p class="text-sm text-warmgray/70">
-        One data point is all you need. Understanding people through single
-        observations and why anecdotal evidence can be more revealing than broad
-        studies.
-      </p>
-    </div>
-    <div class="thought-card">
-      <h2 class="mb-2 text-lg font-semibold">
-        <a href="/reth-archival-node-lighthouse-build-guide" class="thought-link">
-          Reth Archival Node Lighthouse Build Guide
-        </a>
-      </h2>
-      <p class="text-sm text-warmgray/70">
-        Technical guide for building and setting up Reth archival nodes with
-        Lighthouse integration.
-      </p>
-    </div>
-    <div class="thought-card">
-      <h2 class="mb-2 text-lg font-semibold">
-        <a href="/money" class="thought-link">
-          Money and Investing
-        </a>
-      </h2>
-      <p class="text-sm text-warmgray/70">
-        Links to useful articles on money and investing.
-      </p>
-    </div>
-    <div class="thought-card">
-      <h2 class="mb-2 text-lg font-semibold">
-        <a href="/poker" class="thought-link">
-          Poker Hand Rankings
-        </a>
-      </h2>
-      <p class="text-sm text-warmgray/70">
-        A comprehensive guide to poker hand rankings from Royal Flush to High
-        Card, with interactive card displays.
-      </p>
-    </div>
-  </div>
-</div>
+<h2 class="list-label"><span>AI Observations</span><span class="rule"></span><a href="https://aiobservations.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a></h2>
+<ol>
+  {% for essay in essays %}
+  <li class="essay-row">
+    <span class="rn">{{ forloop.index | roman }}.</span>
+    <a href="{{ essay.url }}" target="_blank" rel="noopener noreferrer">{{ essay.title }}</a>
+    <span class="leader" aria-hidden="true"></span>
+    <span class="date">{{ essay.date }}</span>
+  </li>
+  {% endfor %}
+</ol>
+
+<h2 class="list-label"><span>Notes</span><span class="rule"></span><span class="diamond"></span></h2>
+<ol class="project-list">
+  {% for note in notes %}
+  <li class="project-row">
+    <span class="rn">{{ forloop.index | roman }}.</span>
+    <a class="project-link" href="{{ note.url }}">{{ note.title }}</a>
+    <span></span>
+    <p class="project-desc">{{ note.description }}</p>
+  </li>
+  {% endfor %}
+</ol>

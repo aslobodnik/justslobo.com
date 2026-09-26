@@ -1,62 +1,42 @@
 ---
 layout: default
 title: Alex "Slobo" Slobodnik
-description: Running Shiphaus — AI training and workflow automation.
+description: Putting machines to work.
 image: /img/pfp.webp
 ---
 
-<div class="flex space-x-4">
-  <img
-    src="/img/pfp.webp"
-    alt="Alex Slobodnik"
-    class="profile-img"
-  />
+<figure class="plate plate-band">
+  <img src="/img/band-home.webp" width="1600" height="475" alt="" fetchpriority="high" />
+</figure>
 
-  <div>
-    <h1 class="text-2xl">Alex <span class="italic text-accent/80">&ldquo;Slobo&rdquo;</span> Slobodnik</h1>
-    <div class="flex gap-1 mt-2">
-      <a href="https://x.com/AlexSlobodnik" target="_blank" class="social-link" aria-label="X (Twitter)">
-        <img
-          src="https://imagedelivery.net/UJ5oN2ajUBrk2SVxlns2Aw/4b40503a-8358-4fca-0652-2c7fd85edb00/public"
-          alt=""
-        />
-      </a>
-      <a href="https://warpcast.com/slobo.eth" target="_blank" class="social-link" aria-label="Warpcast">
-        <img
-          src="https://imagedelivery.net/UJ5oN2ajUBrk2SVxlns2Aw/317bf4dd-ff15-49a8-2a41-32be63433200/public"
-          alt=""
-        />
-      </a>
-      <a href="https://github.com/aslobodnik" target="_blank" class="social-link" aria-label="GitHub">
-        <img
-          src="https://imagedelivery.net/UJ5oN2ajUBrk2SVxlns2Aw/241d6192-344e-4634-2162-e685df2f0b00/public"
-          alt=""
-        />
-      </a>
-    </div>
-  </div>
-</div>
+<h1 class="page-title mt-6">Alex <span class="italic text-accent">&ldquo;Slobo&rdquo;</span> Slobodnik</h1>
+<p class="mt-4">
+  Hi, I'm Slobo. I grew up in Chicago and moved to New York in 2023. I put
+  machines to work at
+  <a class="content-link" href="https://fullrange.ai" target="_blank" rel="noopener noreferrer">fullrange.ai</a>.
+  I like coffee, hiking, and reading.
+</p>
 
-<h2 class="section-title">About</h2>
-<div>
-  Hi, I'm Slobo. I grew up in Chicago and moved to New York in 2023. I run
-  <a class="content-link" href="https://shiphaus.org" target="_blank">Shiphaus</a>,
-  where we help teams ship with AI. I like coffee, hiking, and creating value.
-</div>
-
-<h2 class="section-title">Projects</h2>
-
-<div class="flex flex-col gap-6 pb-10">
+<h2 class="list-label"><span>Experiments</span><span class="rule"></span><span class="diamond"></span></h2>
+<ol class="project-list">
   {% for project in projects %}
-  <div>
-    <a
-      href="{{ project.url }}"
-      target="_blank"
-      class="content-link"
-    >
-      {{ project.title }}
-    </a>
-    <p class="mt-2">{{ project.description | safe }}</p>
-  </div>
+  <li class="project-row">
+    <span class="rn">{{ forloop.index | roman }}.</span>
+    <a class="project-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+    <span class="project-meta">{% if project.essay %}<a class="project-essay" href="{{ project.essay }}" target="_blank" rel="noopener noreferrer">Essay</a>{% endif %}</span>
+    <p class="project-desc">{{ project.description }}</p>
+  </li>
   {% endfor %}
-</div>
+</ol>
+
+<h2 class="list-label"><span>Sites I maintain</span><span class="rule"></span><span class="diamond"></span></h2>
+<ol class="project-list">
+  {% for site in sites %}
+  <li class="project-row">
+    <span class="rn">{{ forloop.index | roman }}.</span>
+    <a class="project-link" href="{{ site.url }}" target="_blank" rel="noopener noreferrer">{{ site.title }}</a>
+    <span class="project-meta">{{ site.domain }}</span>
+    <p class="project-desc">{{ site.description }}</p>
+  </li>
+  {% endfor %}
+</ol>

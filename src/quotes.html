@@ -5,7 +5,7 @@ description: Quotes I frequently reference.
 image: /img/book.webp
 ---
 
-{% include "hero.html", title: "Quotes", image: "/img/quote.webp" %}
+{% include "hero.html", title: "Quotes", band: "/img/band-quotes.webp" %}
 
 <div class="flex flex-col gap-2 mt-8 pb-10">
   {% for quote in quotes %}
@@ -18,18 +18,18 @@ image: /img/book.webp
 
 <!-- Friedman's 2x2 matrix on spending -->
 <div class="mt-12 mb-10">
-  <p class="text-sm text-warmgray/60 mb-4 text-center">Milton Friedman on 4 ways to spend money</p>
-  <div class="grid grid-cols-[auto_1fr_1fr] gap-px bg-warm-border text-sm">
+  <p class="label mb-4 text-center">Milton Friedman on 4 ways to spend money</p>
+  <div class="grid grid-cols-[auto_1fr_1fr] gap-px bg-warm-border">
     <!-- Header row -->
     <div class="bg-cream"></div>
-    <div class="bg-cream p-3 text-center font-medium text-warmgray/70">On Yourself</div>
-    <div class="bg-cream p-3 text-center font-medium text-warmgray/70">On Others</div>
+    <div class="bg-cream p-3 text-center muted">On Yourself</div>
+    <div class="bg-cream p-3 text-center muted">On Others</div>
     <!-- Your money row -->
-    <div class="bg-cream p-3 text-right font-medium text-warmgray/70">Your Money</div>
+    <div class="bg-cream p-3 text-right muted">Your Money</div>
     <div class="friedman-cell"><span>careful about cost & quality</span></div>
     <div class="friedman-cell"><span>careful about cost</span></div>
     <!-- Others' money row -->
-    <div class="bg-cream p-3 text-right font-medium text-warmgray/70">Others' Money</div>
+    <div class="bg-cream p-3 text-right muted">Others' Money</div>
     <div class="friedman-cell"><span>careful about quality</span></div>
     <div class="friedman-cell"><span>neither cost nor quality</span></div>
   </div>
