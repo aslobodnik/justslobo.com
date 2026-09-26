@@ -134,16 +134,15 @@
   }
 
   /* Project lists: the row links to the project; the essay link sits above it */
+  /* rows run 12px past the column; padding keeps text on the column edge */
   .project-row {
-    @apply relative grid items-baseline gap-x-2 py-3.5 border-b border-dotted;
+    @apply relative grid items-baseline gap-x-2 py-3.5 -mx-3 px-3 border-b border-dotted;
     border-color: #C9BFAC;
     grid-template-columns: 2.25rem 1fr auto;
-    transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out;
+    transition: background-color 250ms ease-in-out;
   }
-  /* tint bleeds 12px past the column so text never sits on its edge */
   .project-row:hover {
     background-color: rgb(29 107 80 / 0.05);
-    box-shadow: -12px 0 0 rgb(29 107 80 / 0.05), 12px 0 0 rgb(29 107 80 / 0.05);
   }
   .project-link {
     @apply item-title;
@@ -170,7 +169,7 @@
 
   /* Essay list: table of contents with dotted leaders; date drops below on phones */
   .essay-row {
-    @apply grid items-baseline gap-x-2 py-2.5 border-b border-dotted sm:flex sm:gap-2 sm:border-b-0;
+    @apply grid items-baseline gap-x-2 py-2.5 -mx-3 px-3 border-b border-dotted sm:flex sm:gap-2 sm:border-b-0;
     border-color: #C9BFAC;
     grid-template-columns: 2.25rem 1fr;
   }
@@ -219,7 +218,7 @@
 
   /* Quotes: hanging emerald quote mark, dotted rules between */
   .quote-row {
-    @apply grid py-5 border-b border-dotted;
+    @apply grid py-5 -mx-3 px-3 border-b border-dotted;
     border-color: #C9BFAC;
     grid-template-columns: 2.25rem 1fr;
   }
@@ -232,7 +231,7 @@
 
   /* Books: roman-numeral rows like the homepage lists */
   .book-row {
-    @apply grid items-baseline gap-x-2 py-4 border-b border-dotted;
+    @apply grid items-baseline gap-x-2 py-4 -mx-3 px-3 border-b border-dotted;
     border-color: #C9BFAC;
     grid-template-columns: 2.25rem 1fr;
   }
