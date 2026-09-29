@@ -8,14 +8,81 @@
   Motion: every hover state eases over 250ms.
 */
 @layer base {
+  /* Palette: tailwind colors are rgb triplets so opacity modifiers work */
+  :root {
+    color-scheme: light dark;
+    --cream: 246 242 233;
+    --warmgray: 38 35 32;
+    --accent: 29 107 80;
+    --accent-light: 47 133 99;
+    --warm-border: 227 220 205;
+    --rule: #C9BFAC;
+    --leader: #B5AB97;
+    --hairline: #B9CBBF;
+    --plate-outline: #9DB8AA;
+    --selection: #CFE0D6;
+    --wordmark: #2D2D2D;
+    --wordmark-hover: #185C43;
+    --row-hover: rgb(29 107 80 / 0.05);
+    --line: #1D6B50;
+    --hatch: url("/img/hatch.svg");
+    --art-filter: none;
+  }
+  /* Dark: warm black paper, cream ink, lifted emerald.
+     Follows the system unless the wordmark switch set data-theme. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --cream: 23 21 18;
+      --warmgray: 232 226 211;
+      --accent: 109 184 148;
+      --accent-light: 124 199 162;
+      --warm-border: 42 39 34;
+      --rule: #3D382F;
+      --leader: #4A4439;
+      --hairline: #2F4A3D;
+      --plate-outline: #3F6553;
+      --selection: #23443A;
+      --wordmark: #E8E2D3;
+      --wordmark-hover: #7CC7A2;
+      --row-hover: rgb(109 184 148 / 0.07);
+      /* frame lines sit below text-role accent; art highlights stay under body text */
+      --line: #3D8469;
+      --hatch: url("/img/hatch-dark.svg");
+      --art-filter: brightness(0.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --cream: 23 21 18;
+    --warmgray: 232 226 211;
+    --accent: 109 184 148;
+    --accent-light: 124 199 162;
+    --warm-border: 42 39 34;
+    --rule: #3D382F;
+    --leader: #4A4439;
+    --hairline: #2F4A3D;
+    --plate-outline: #3F6553;
+    --selection: #23443A;
+    --wordmark: #E8E2D3;
+    --wordmark-hover: #7CC7A2;
+    --row-hover: rgb(109 184 148 / 0.07);
+    /* frame lines sit below text-role accent; art highlights stay under body text */
+    --line: #3D8469;
+    --hatch: url("/img/hatch-dark.svg");
+    --art-filter: brightness(0.7);
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+  }
   body {
     line-height: 1.75;
   }
   ::selection {
-    background-color: #CFE0D6;
+    background-color: var(--selection);
   }
   :focus-visible {
-    outline: 2px solid #1D6B50;
+    outline: 2px solid rgb(var(--accent));
     outline-offset: 3px;
   }
   a, button, summary, [class*="hover:"] {
@@ -43,10 +110,68 @@
   /* Wordmark */
   .justslobo-wordmark {
     display: block;
-    color: #2D2D2D;
+    color: var(--wordmark);
   }
   .justslobo-wordmark:hover {
-    color: #185C43;
+    color: var(--wordmark-hover);
+  }
+  /* The last o is the theme switch; its icon shows on hover, focus, or after a tap */
+  .justslobo-wordmark:has(.theme-o:hover) {
+    color: var(--wordmark);
+  }
+  .o-letter {
+    transition: fill-opacity 250ms ease-in-out;
+  }
+  .theme-o {
+    cursor: pointer;
+    color: rgb(var(--accent));
+  }
+  /* keyboard focus draws on the hit box; no ring after a click */
+  .theme-o:focus {
+    outline: none;
+  }
+  .theme-o:focus-visible .hit {
+    stroke: currentColor;
+    stroke-width: 3;
+  }
+  /* a speck of green in the counter of the o: the only tell at rest */
+  .theme-o .hint {
+    fill: currentColor;
+    transition: opacity 250ms ease-in-out;
+  }
+  .theme-o:hover .hint,
+  .theme-o:focus-visible .hint,
+  svg.show .theme-o .hint {
+    opacity: 0;
+  }
+  .theme-o .icon {
+    display: none;
+    opacity: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: opacity 250ms ease-in-out;
+  }
+  .theme-o .solid {
+    fill: currentColor;
+    stroke: none;
+  }
+  :root:not([data-theme]) .icon-robot,
+  :root[data-theme="light"] .icon-sun,
+  :root[data-theme="dark"] .icon-moon {
+    display: block;
+  }
+  svg:has(.theme-o:hover) .o-letter,
+  svg:has(.theme-o:focus-visible) .o-letter,
+  svg.show .o-letter {
+    fill-opacity: 0;
+  }
+  .theme-o:hover .icon,
+  .theme-o:focus-visible .icon,
+  svg.show .theme-o .icon {
+    opacity: 1;
   }
 
   /* Navigation */
@@ -89,10 +214,11 @@
   }
   .list-label .rule {
     @apply flex-grow h-px;
-    background-color: #B9CBBF;
+    background-color: var(--hairline);
   }
   .list-label .diamond {
-    @apply w-1.5 h-1.5 bg-accent rotate-45;
+    @apply w-1.5 h-1.5 rotate-45;
+    background-color: var(--line);
   }
   .list-label a {
     @apply hover:text-warmgray;
@@ -107,11 +233,13 @@
 
   /* Engraved plate: double hairline frame around duotone art */
   .plate {
-    @apply block border border-accent p-[5px];
+    @apply block border p-[5px];
+    border-color: var(--line);
   }
   .plate img {
     @apply block w-full;
-    outline: 1px solid #9DB8AA;
+    outline: 1px solid var(--plate-outline);
+    filter: var(--art-filter);
   }
   .plate-band img {
     @apply h-[120px] sm:h-[190px] object-cover;
@@ -124,8 +252,9 @@
     @apply w-11 h-11 outline-none;
   }
   .hatch-rule {
-    @apply h-2 border-y border-accent;
-    background: url("/img/hatch.svg") repeat-x;
+    @apply h-2 border-y;
+    border-color: var(--line);
+    background: var(--hatch) repeat-x;
   }
 
   /* Roman numerals, italic, in the margin of every list */
@@ -137,12 +266,12 @@
   /* rows run 12px past the column; padding keeps text on the column edge */
   .project-row {
     @apply relative grid items-baseline gap-x-2 py-3.5 -mx-3 px-3 border-b border-dotted;
-    border-color: #C9BFAC;
+    border-color: var(--rule);
     grid-template-columns: 2.25rem 1fr auto;
     transition: background-color 250ms ease-in-out;
   }
   .project-row:hover {
-    background-color: rgb(29 107 80 / 0.05);
+    background-color: var(--row-hover);
   }
   .project-link {
     @apply item-title;
@@ -170,7 +299,7 @@
   /* Essay list: table of contents with dotted leaders; date drops below on phones */
   .essay-row {
     @apply grid items-baseline gap-x-2 py-2.5 -mx-3 px-3 border-b border-dotted sm:flex sm:gap-2 sm:border-b-0;
-    border-color: #C9BFAC;
+    border-color: var(--rule);
     grid-template-columns: 2.25rem 1fr;
   }
   .essay-row .rn {
@@ -181,7 +310,7 @@
   }
   .essay-row .leader {
     @apply hidden sm:block flex-grow min-w-6 border-b border-dotted -translate-y-1.5;
-    border-color: #B5AB97;
+    border-color: var(--leader);
   }
   .essay-row .date {
     @apply label muted col-start-2 whitespace-nowrap;
@@ -219,7 +348,7 @@
   /* Quotes: hanging emerald quote mark, dotted rules between */
   .quote-row {
     @apply grid py-5 -mx-3 px-3 border-b border-dotted;
-    border-color: #C9BFAC;
+    border-color: var(--rule);
     grid-template-columns: 2.25rem 1fr;
   }
   .quote-mark {
@@ -232,7 +361,7 @@
   /* Books: roman-numeral rows like the homepage lists */
   .book-row {
     @apply grid items-baseline gap-x-2 py-4 -mx-3 px-3 border-b border-dotted;
-    border-color: #C9BFAC;
+    border-color: var(--rule);
     grid-template-columns: 2.25rem 1fr;
   }
   .book-quote {

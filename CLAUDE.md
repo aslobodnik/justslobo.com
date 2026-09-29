@@ -59,4 +59,4 @@ _site/                 # build output (gitignored)
 - **Hero**: `{% include "hero.html", title: "...", image: "..." %}`
 - **Container**: `max-w-2xl` centered
 - **Nav**: "slobo" left, links right
-- **No JavaScript** - CSS-only interactivity
+- **JavaScript**: small inline scripts in `default.html` only (theme switch); no frameworks or bundles

@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="/styles.css" />
     <link rel="icon" href="/img/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
-    <meta name="theme-color" content="#F6F2E9" />
+    <meta name="theme-color" content="#F6F2E9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#171512" media="(prefers-color-scheme: dark)" />
     <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ title | escape }}" />
@@ -28,6 +29,13 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@AlexSlobodnik" />
     <meta name="twitter:image" content="{{ site.url }}{{ image }}" />
+    <script>
+      // stored choice wins over the system setting; runs before paint
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="0ui1HqtBuviWSt3DzPaHWg" async></script>
   </head>
   <body
@@ -75,9 +83,26 @@
                 font-family="Iowan Old Style, Palatino, Garamond, Georgia, serif"
                 font-weight="500"
                 filter="url(#ink)"
-              >
-                justslobo
-              </text>
+              >justslob<tspan class="o-letter">o</tspan></text>
+              <!-- the last o is the theme switch: robot = system, sun = light, moon = dark -->
+              <g class="theme-o" role="button" tabindex="0" aria-label="Theme" hidden>
+                <rect class="hit" y="40" height="150" fill="transparent" />
+                <circle class="hint" r="6" />
+                <g class="icon icon-robot">
+                  <rect x="-22" y="-14" width="44" height="36" rx="5" />
+                  <path d="M0 -14 V-24" />
+                  <circle cx="0" cy="-28" r="3" class="solid" />
+                  <circle cx="-9" cy="2" r="4.5" class="solid" />
+                  <circle cx="9" cy="2" r="4.5" class="solid" />
+                </g>
+                <g class="icon icon-sun">
+                  <circle r="11" class="solid" />
+                  <path d="M0 -19 V-28 M0 19 V28 M-19 0 H-28 M19 0 H28 M13.4 -13.4 L19.8 -19.8 M-13.4 -13.4 L-19.8 -19.8 M13.4 13.4 L19.8 19.8 M-13.4 13.4 L-19.8 19.8" />
+                </g>
+                <g class="icon icon-moon">
+                  <path d="M6 -26 A26 26 0 1 0 26 8 A21 21 0 0 1 6 -26 Z" class="solid" />
+                </g>
+              </g>
             </svg>
           </a>
           <ul class="flex gap-4 sm:gap-6">
@@ -116,5 +141,61 @@
         <div class="label easter-egg">pay no attention to the man behind the curtain</div>
       </div>
     </footer>
+    <script>
+      // theme switch in the wordmark: system -> the other scheme -> the system's scheme -> system
+      (function () {
+        var root = document.documentElement;
+        var svg = document.querySelector(".justslobo-wordmark svg");
+        var sw = svg.querySelector(".theme-o");
+        var system = matchMedia("(prefers-color-scheme: dark)");
+        var metas = document.querySelectorAll('meta[name="theme-color"]');
+        var paper = { light: "#F6F2E9", dark: "#171512" };
+        var names = { auto: "system", light: "light", dark: "dark" };
+        var timer;
+        function place() {
+          // seat the icons on the last o; x-height centre is the text's y (dominant-baseline middle)
+          var box = svg.querySelector("text").getExtentOfChar(8);
+          var hit = sw.querySelector(".hit");
+          hit.setAttribute("x", box.x - 6);
+          hit.setAttribute("width", box.width + 12);
+          sw.querySelectorAll(".icon, .hint").forEach(function (icon) {
+            icon.setAttribute("transform", "translate(" + (box.x + box.width / 2) + " 114.4)");
+          });
+          sw.removeAttribute("hidden");
+        }
+        function sync() {
+          var t = root.dataset.theme;
+          metas[0].content = paper[t || "light"];
+          metas[1].content = paper[t || "dark"];
+          sw.setAttribute("aria-label", "Theme: " + names[t || "auto"] + ". Click to change.");
+        }
+        function cycle(e) {
+          // the switch sits inside the home link
+          e.preventDefault();
+          e.stopPropagation();
+          var sys = system.matches ? "dark" : "light";
+          var order = ["auto", sys === "dark" ? "light" : "dark", sys];
+          var next = order[(order.indexOf(root.dataset.theme || "auto") + 1) % 3];
+          try {
+            if (next === "auto") localStorage.removeItem("theme");
+            else localStorage.setItem("theme", next);
+          } catch (e) {}
+          if (next === "auto") delete root.dataset.theme;
+          else root.dataset.theme = next;
+          sync();
+          // touch has no hover: hold the icon up briefly
+          svg.classList.add("show");
+          clearTimeout(timer);
+          timer = setTimeout(function () { svg.classList.remove("show"); }, 1600);
+        }
+        place();
+        sync();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+        sw.addEventListener("click", cycle);
+        sw.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") cycle(e);
+        });
+      })();
+    </script>
   </body>
 </html>
