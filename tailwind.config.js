@@ -8,6 +8,7 @@ module.exports = {
         accent: "rgb(var(--accent) / <alpha-value>)",
         "accent-light": "rgb(var(--accent-light) / <alpha-value>)",
         "warm-border": "rgb(var(--warm-border) / <alpha-value>)",
+        panel: "var(--panel)",
       },
       fontFamily: {
         serif: ['"Source Serif 4"', "Georgia", "serif"],

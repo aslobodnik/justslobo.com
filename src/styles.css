@@ -25,6 +25,7 @@
     --wordmark-hover: #185C43;
     --row-hover: rgb(29 107 80 / 0.05);
     --line: #1D6B50;
+    --panel: rgb(255 255 255 / 0.4);
     --hatch: url("/img/hatch.svg");
     --art-filter: none;
   }
@@ -48,6 +49,7 @@
       --row-hover: rgb(109 184 148 / 0.07);
       /* frame lines sit below text-role accent; art highlights stay under body text */
       --line: #3D8469;
+      --panel: rgb(255 255 255 / 0.04);
       --hatch: url("/img/hatch-dark.svg");
       --art-filter: brightness(0.7);
     }
@@ -69,6 +71,7 @@
     --row-hover: rgb(109 184 148 / 0.07);
     /* frame lines sit below text-role accent; art highlights stay under body text */
     --line: #3D8469;
+    --panel: rgb(255 255 255 / 0.04);
     --hatch: url("/img/hatch-dark.svg");
     --art-filter: brightness(0.7);
   }
