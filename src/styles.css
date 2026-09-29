@@ -28,6 +28,7 @@
     --panel: rgb(255 255 255 / 0.4);
     --hatch: url("/img/hatch.svg");
     --art-filter: none;
+    --card-filter: none;
   }
   /* Dark: warm black paper, cream ink, lifted emerald.
      Follows the system unless the wordmark switch set data-theme. */
@@ -52,6 +53,7 @@
       --panel: rgb(255 255 255 / 0.04);
       --hatch: url("/img/hatch-dark.svg");
       --art-filter: brightness(0.7);
+      --card-filter: brightness(0.85);
     }
   }
   :root[data-theme="dark"] {
@@ -74,6 +76,7 @@
     --panel: rgb(255 255 255 / 0.04);
     --hatch: url("/img/hatch-dark.svg");
     --art-filter: brightness(0.7);
+    --card-filter: brightness(0.85);
   }
   :root[data-theme="light"] {
     color-scheme: light;
@@ -322,6 +325,7 @@
   /* Poker */
   .poker-card {
     @apply w-auto h-20 md:h-28 hover:scale-110;
+    filter: var(--card-filter);
   }
   .hand-title {
     @apply label mb-4;
