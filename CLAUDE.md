@@ -59,4 +59,4 @@ _site/                 # build output (gitignored)
 - **Hero**: `{% include "hero.html", title: "...", image: "..." %}`
 - **Container**: `max-w-2xl` centered
 - **Nav**: "slobo" left, links right
-- **JavaScript**: small inline scripts in `default.html` only (theme switch); no frameworks or bundles
+- **JavaScript**: small inline scripts in `default.html` only (theme switch); no frameworks or bundles. One exception: `src/js/sky-band.js` (live sky over the home band, plain JS, loaded on the home page only)

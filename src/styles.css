@@ -251,6 +251,28 @@
     @apply h-[120px] sm:h-[190px] object-cover;
     object-position: 50% 40%;
   }
+  /* live sky (src/js/sky-band.js): the canvas takes the image's place; it dims itself in dark mode */
+  .plate .sky {
+    @apply relative;
+  }
+  .plate .sky canvas {
+    @apply block w-full h-[120px] sm:h-[190px] object-cover;
+    object-position: 50% 40%;
+    outline: 1px solid var(--plate-outline);
+  }
+  .plate .sky .sky-ov {
+    @apply absolute inset-0 pointer-events-none;
+    outline: none;
+    animation: beacon 2.6s infinite;
+  }
+  @keyframes beacon {
+    0% { opacity: 0; }
+    17% { opacity: 1; }
+    35%, 100% { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .plate .sky .sky-ov { animation: none; opacity: 0.7; }
+  }
   .plate-sm {
     @apply inline-block p-[3px];
   }

@@ -1,5 +1,6 @@
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/img");
+  eleventyConfig.addPassthroughCopy("src/js");
 
   // Configure Liquid to output HTML unescaped
   eleventyConfig.setLiquidOptions({
